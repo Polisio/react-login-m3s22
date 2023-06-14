@@ -1,5 +1,5 @@
 function Home() {
-    return ( <h1>Home Componenent</h1> );
+    return ( <h1>Home Component</h1> );
 }
 
 export default Home;

@@ -1,6 +1,5 @@
-import bannerLogo from '../images/bg-1.jpg'
+import bannerLogo from '../images/bg-1.jpg';
 import { useState } from 'react';
-import {} from '../services/Auth.services';
 import { loginService } from '../services/Auth.services';
 import Swal from 'sweetalert2';
 
@@ -12,6 +11,7 @@ function Login() {
     });
 
     const handleInputChange = (event) => {
+        // este va estableciendo el balor de los input al state del formulario
         setFormLogin({
             ...formLogin,
             [event.target.name]: event.target.value
@@ -19,33 +19,36 @@ function Login() {
     }
 
     const handleSubmit = (event) => {
+        // este va ser el envio del formuladio al backend
         event.preventDefault();
         console.log(formLogin, "formLogin");
         loginService(formLogin)
-        .then((response) =>{
-            console.log(response);
-            Swal.fire({
-                icon:'success',
-                title: 'Mensaje',
-                text: 'Login correcto'
+            .then((response) => {
+                // funciono el login
+                console.log(response);
+                Swal.fire({
+                    icon:'success',
+                    title: 'Mensaje',
+                    text: 'Login correcto'
+                });
             })
-        })
-        .catch ((error) => {
-            console.log(error);
-            Swal.fire({
-                icon:'error',
-                title: 'Mensaje',
-                text: 'error en login'
+            .catch((error) => {
+                // fallo el login
+                Swal.fire({
+                    icon:'error',
+                    title: 'Mensaje',
+                    text: 'Error en login'
+                });
             })
-        })
+        // como esto mando esto al backend estoy al 50%
     }
 
-    return ( 
+    return (
         <section className="ftco-section">
             <div className="container">
                 <div className="row justify-content-center">
                     <div className="col-md-6 text-center mb-5">
-                        <h2 className="heading-section">Login #05</h2>
+                        <h2 className="heading-section">Login Ecommerce Web</h2>
                     </div>
                 </div>
                 <div className="row justify-content-center">
@@ -60,19 +63,20 @@ function Login() {
                                 </div>
                                 <form className="signin-form" onSubmit={handleSubmit}>
                                     <div className="form-group mt-3">
-                                        <input type="email" className="form-control" required onChange={handleInputChange} value={formLogin.email} name='email'/>
+                                        <input type="email" className="form-control" required onChange={handleInputChange} value={formLogin.email} name="email" />
                                         <label className="form-control-placeholder" htmlFor="username">Email</label>
                                     </div>
                                     <div className="form-group">
-                                        <input id="password-field" type="password" className="form-control" required onChange={handleInputChange} value={formLogin.password} name='password'/>
+                                        <input id="password-field" type="password" className="form-control" required onChange={handleInputChange} value={formLogin.password} name="password" />
                                         <label className="form-control-placeholder" htmlFor="password">Password</label>
                                         <span toggle="#password-field" className="fa fa-fw fa-eye field-icon toggle-password" />
                                     </div>
                                     <div className="form-group">
-                                        <button type="submit" className="form-control btn btn-primary rounded submit px-3">Sign In</button>
+                                        <button type="submit" className="form-control btn btn-primary rounded submit px-3">Sign
+                                            In</button>
                                     </div>
                                 </form>
-                                <p className="text-center">¿No eres miembro? <a data-toggle="tab" href="#signup">Regístrate</a></p>
+                                <p className="text-center">No estas registrado? <a data-toggle="tab" href="#signup">Registrate</a></p>
                             </div>
                         </div>
                     </div>
